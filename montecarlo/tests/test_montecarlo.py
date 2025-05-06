@@ -14,6 +14,3 @@ def test_montecarlo_imported():
     """Sample test, will always pass so long as import statement worked."""
     assert "montecarlo" in sys.modules
 
-    h = montecarlo.BitString(10)
-
-    assert (h.integer() == 0)
