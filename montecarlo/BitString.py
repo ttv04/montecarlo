@@ -1,29 +1,100 @@
-"""Provide the primary functions."""
+import math
+import numpy as np
 
-
-def canvas(with_attribution=True):
+class BitString:
     """
-    Placeholder function to show example docstring (NumPy format).
-
-    Replace this function and doc string for your own project.
-
-    Parameters
-    ----------
-    with_attribution : bool, Optional, default: True
-        Set whether or not to display who the quote is from.
-
-    Returns
-    -------
-    quote : str
-        Compiled string including quote and optional attribution.
+    Simple class to implement a config of bits
     """
+    def __init__(self, N):
+        self.N = N
+        self.config = np.zeros(N, dtype=int) 
 
-    quote = "The code is but a canvas to our imagination."
-    if with_attribution:
-        quote += "\n\t- Adapted from Henry David Thoreau"
-    return quote
+    def __repr__(self):
+        out = ""
+        for i in self.config:
+            out += str(i)
+        return out
 
+    def __eq__(self, other):        
+        return all(self.config == other.config)
+    
+    def __len__(self):
+        return len(self.config)
 
-if __name__ == "__main__":
-    # Do something if this file is invoked on its own
-    print(canvas())
+    def on(self):
+        """
+        Return number of bits that are on
+        """
+        return np.sum(self.config)
+
+    def off(self):
+        """
+        Return number of bits that are on
+        """
+        return len(self)-self.on()
+
+    def flip_site(self,i):
+        """
+        Flip the bit at site i
+        """
+        try:
+            self.config[i] = (self.config[i] + 1) % 2
+        except ValueError:
+            print("problem with i", i)
+    
+    def integer(self):
+        """
+        Return the decimal integer corresponding to BitString
+        """
+        out = 0
+        for idx, i in enumerate(reversed(self.config)):
+            if i==1:
+                out += 2**idx
+                # print(i, idx, i*(2**idx), out)
+        return out
+ 
+    def getBit(self, pos: int) -> int:
+        return (self.config[pos])
+
+    def set_config(self, s:list[int]):
+        """
+        Set the config from a list of integers
+        """
+        try:
+            assert(len(s) == self.N)
+        except:
+            raise ValueError("provided config wrong size: ", len(s), " ")  
+        self.config = s
+        return
+
+    def set_integer_config(self, dec:int):
+        """
+        convert a decimal integer to binary
+    
+        Parameters
+        ----------
+        dec    : int
+            input integer
+            
+        Returns
+        -------
+        Bitconfig
+        """
+        digits_needed = math.ceil(math.log(dec+1,2))
+        try:
+            assert(self.N >= digits_needed)
+        except:
+            raise ValueError("not enough digits!")
+            
+        config = np.array([0 for i in range(self.N)])
+        # bs = Bitconfig(digits)
+    
+        # for i in range(digits_needed):
+        tmp = dec*1
+        for i in reversed(range(self.N-digits_needed, self.N)):
+            # print(tmp%2)
+            config[i] = tmp%2
+            tmp = tmp//2
+        self.set_config(config)
+        return 
+    
