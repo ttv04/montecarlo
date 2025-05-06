@@ -1,5 +1,5 @@
 import numpy as np
-from .BitString import *
+import BitString
 import networkx as nx
 
 class IsingHamiltonian:
