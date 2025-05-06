@@ -1,8 +1,8 @@
-"""Montecarlo Package"""
+"""MonteCarlo Package"""
 
 # Add imports here
-import BitString
-import IsingHamiltonian
+from .BitString import *
+from .IsingHamiltonian import *
 
 
 from ._version import __version__
