@@ -15,7 +15,22 @@ def test_montecarlo_imported():
     assert "montecarlo" in sys.modules
 
 
-h = montecarlo.BitString(10)
-h.set_integer_config(45)
-print(h.integer())
-print(h.config)
+#h = montecarlo.BitString(10)
+#h.set_integer_config(45)
+#print(h.integer())
+#print(h.config)
+
+def testBitString():
+    h = montecarlo.BitString(10)
+    h.set_integer_config(45)
+
+    assert(h.integer() == 45)
+
+    h.flip_site(9)
+
+    assert(h.integer() == 44)
+
+
+if __name__ == "__main__":
+    testBitString()
+    test_montecarlo_imported()
