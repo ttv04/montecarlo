@@ -2,7 +2,7 @@ montecarlo
 ==============================
 [//]: # (Badges)
 [![GitHub Actions Build Status](https://github.com/ttv04/montecarlo/workflows/CI/badge.svg)](https://github.com/ttv04/montecarlo/actions?query=workflow%3ACI)
-[![codecov](https://codecov.io/gh/ttv04/montecarlo/branch/main/graph/badge.svg)](https://codecov.io/gh/ttv04/montecarlo/branch/main)
+[![codecov](https://codecov.io/gh/ttv04/montecarlo/branch/main/graph/badge.svg)](https://codecov.io/gh/ttv04/montecarlo)
 
 
 MonteCarlo Package
