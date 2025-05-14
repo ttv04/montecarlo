@@ -12,6 +12,7 @@ class IsingHamiltonian:
     def set_mu(self, mus: np.array):
         # self.mu = mus.copy()
         self.mu = mus.copy()
+        return self
 
     def energy(self, bs: BitString):
         E = 0

@@ -37,10 +37,7 @@ class BitString:
         """
         Flip the bit at site i
         """
-        try:
-            self.config[i] = (self.config[i] + 1) % 2
-        except ValueError:
-            print("problem with i", i)
+        self.config[i] = (self.config[i] + 1) % 2
     
     def integer(self):
         """
@@ -60,10 +57,7 @@ class BitString:
         """
         Set the config from a list of integers
         """
-        try:
-            assert(len(s) == self.N)
-        except:
-            raise ValueError("provided config wrong size: ", len(s), " ")  
+        assert(len(s) == self.N)
         self.config = s
         return
 
@@ -81,10 +75,7 @@ class BitString:
         Bitconfig
         """
         digits_needed = math.ceil(math.log(dec+1,2))
-        try:
-            assert(self.N >= digits_needed)
-        except:
-            raise ValueError("not enough digits!")
+        assert(self.N >= digits_needed)
             
         config = np.array([0 for i in range(self.N)])
         # bs = Bitconfig(digits)
